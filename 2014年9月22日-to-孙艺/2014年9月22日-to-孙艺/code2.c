@@ -4,6 +4,7 @@
 #define MAX_BUFFER 4096
 // #define MAX_NUMBER 9999;
 
+//查找含位置数据的行的坐标结尾
 const char *find_end(const char *start) {
 	if (start == NULL) return NULL;
 	for (; *start != 0; ++start) {
@@ -18,6 +19,7 @@ const char *find_end(const char *start) {
 	return NULL;
 }
 
+//查找含位置数据的行的坐标开头
 const char *find_begin(const char *min_pos, const char *end) {
 	int TF=0, TF2=0;
 	if (end == NULL) return NULL;
@@ -40,6 +42,7 @@ const char *find_begin(const char *min_pos, const char *end) {
 	return NULL;
 }
 
+//查找含位置数据的行的坐标
 const char *find_pos(const char *min_pos, const char *begin, char **ret_string) {
 	const char *end = find_end(begin);
 	const char *start = find_begin(min_pos, end);
@@ -56,6 +59,7 @@ const char *find_pos(const char *min_pos, const char *begin, char **ret_string) 
 	return end + 1;
 }
 
+//【function】从字符串里读进一个整数，直到空格、字符为结尾
 int readAnInt(char *head, int * position)
 {
 	int sum, i, OK=0;
@@ -89,7 +93,6 @@ double transLat(char *lat) {
 		latitude = 90 + latitude;
 	return latitude;
 }
-
 double transLgt(char *lgt) {
 	double longitude;
 	int i;
@@ -112,6 +115,7 @@ int main(int argc, char **argv) {
 	double latitude[9999], longitude[9999];
 	char *buffer = (char *)malloc(MAX_BUFFER);
 	FILE *input = fopen("./2011_08_22_10_41_33.TXT", "r");
+
 
 	for(j=0; ;) {
 		fgets(buffer, MAX_BUFFER, input);
@@ -138,14 +142,15 @@ int main(int argc, char **argv) {
 
 			latitude[i] = transLat(lat);
 			longitude[i] = transLgt(lgt);
-			printf("%lf %lf\n", latitude[i], longitude[i]);
-
+			// printf("%lf %lf\n", latitude[i], longitude[i]);
 
 			free(lat);
 			free(lgt);
 		}
 
 	}
+
+	PositivePosition();
 	
 	return 0;
 }
