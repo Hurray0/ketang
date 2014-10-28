@@ -51,24 +51,13 @@ public class Server_MainThread extends Thread {
 
 				// I/O
 				DataInputStream inputFromClient = new DataInputStream(socket.getInputStream());
-				// DataOutputStream outputToClient = new DataOutputStream(socket.getOutputStream());
+
 				// Json数据处理
 				JsonClass receivedjson = new JsonClass();
 				JsonClass sendjson = new JsonClass();
-				
-
-				//一个统计线程
-				
 
 				// 线程主程序开始
 				while (true) {
-					// Receive radius from the client
-					// 其实执行不到下面这些，所以注释掉了
-					// if(socket.isClosed())
-					// {
-					// 	System.out.println("【OK】成功退出循环");
-					// 	break;
-					// }
 					sendjson = new JsonClass();//必须刷新，否则旧数据还在
 					String s = inputFromClient.readUTF();
 
@@ -209,13 +198,6 @@ public class Server_MainThread extends Thread {
 						} catch(Exception e) {}
 						new output(socket,sendjson);//发送给用户
 					}
-
-					// new output(socket,sendjson);//发送给用户
-					
-
-
-					// lock.lock();
-					
 					
 				}
 			} catch (IOException e) {

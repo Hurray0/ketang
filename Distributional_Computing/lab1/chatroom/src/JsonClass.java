@@ -13,7 +13,7 @@
 //         "password": "(String)",
 //         "ip": "(String)",
 //         "friendname": "(String)", 
-//         "msg": "(String",   
+//         "msg": "(String)",   
 //     }
 // }
 
@@ -128,6 +128,16 @@ public class JsonClass {
     public void setFriendName(String friendname) throws JSONException 
     {
     	jsondata.put("friendname",friendname);
+    }
+    //设置信息
+    public void setMsg(String msg) throws JSONException
+    {
+        jsondata.put("msg", msg);
+    }
+    //获取信息
+    public String getMsg() throws JSONException
+    {
+        return jsondata.getString("msg");
     }
 	
 }

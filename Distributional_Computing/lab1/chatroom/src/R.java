@@ -12,6 +12,7 @@
 public class R {
 	//常量
 	public static final int Server_Port = 8000;//服务器端口
+	public static final String IPADDRESS = "localhost";
 	public static final String db_driver = "com.mysql.jdbc.Driver";// 驱动程序名
 	public static final String db_url = "jdbc:mysql://127.0.0.1:3306/PPH?useUnicode=true&characterEncoding=UTF-8";//URL指向要访问的数据库名scutcs,后面一长串可以保证插入中文成功       
 	public static final String db_user = "BadongAdmin"; // MySQL配置时的用户名         
