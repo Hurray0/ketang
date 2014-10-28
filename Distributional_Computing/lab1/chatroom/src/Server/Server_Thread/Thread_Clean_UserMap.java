@@ -1,11 +1,12 @@
-// Project: Pingpong Here
+// Project: ChatRoom
 // Part: Server
 // File: Thread_Clean_UserMap
 // Note: 清理user_map的线程
 // Author: Hurray Zhu
-// Time: 2014.09.09
+// Time: 2014.10.28
 // E-mail: i@ihurray.com
 // Web-site: http://blog.ihurray.com
+// GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/lab1
 
 //通信包
 import java.io.*;

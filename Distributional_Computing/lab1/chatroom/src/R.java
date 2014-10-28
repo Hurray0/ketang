@@ -1,11 +1,12 @@
-// Project: Pingpong Here
+// Project: ChatRoom
 // Part: Server
 // File: R
 // Note: Resource File
 // Author: Hurray Zhu
-// Time: 2014.09.09
+// Time: 2014.10.28
 // E-mail: i@ihurray.com
 // Web-site: http://blog.ihurray.com
+// GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/lab1
 
 
 public class R {
@@ -20,20 +21,22 @@ public class R {
 
     //serviceHandler相关命令
 	public static final int CMD_LOGIN = 9201;//登录
-	public static final int CMD_SEND_HITBALL = 9202;//发送击球信息到服务器
-	public static final int CMD_RECIVE_BALL = 9203;//从服务器获取来球信息
-	public static final int CMD_GET_NOWSCORE = 9204;//从服务器获取当前比分
-	public static final int CMD_SEARCH_FRIEND = 9205;//发送好友匹配的消息
-	public static final int CMD_GET_RANK = 9206;//获取网络排名
 	public static final int CMD_REGIST = 9207;//注册用户
+	public static final int CMD_SEARCH_FRIEND = 9205;//发送好友匹配的消息
 	public static final int CMD_LOGOUT = 9208;//注销
-	public static final int CMD_SERVICE_INFO = 9209;//服务器消息
-	public static final int CMD_APPLY_FIGHT = 9210;//比赛
+	public static final int CMD_SINGLE_CHAT = 9202;//私聊
+	public static final int CMD_GROUP_CHAT = 9203;//群聊
 
 
 	//相关状态声明
 	public static final int STATU_LOGIN_SUCCESS = 101;//登陆成功
 	public static final int STATU_LOGIN_FAILED = 102;//登陆失败
+
+	public static final int STATU_S_CHAT_SUCCESS = 201;//私聊成功
+	public static final int STATU_S_CHAT_FAILED = 202;//私聊失败
+
+	public static final int STATU_G_CHAT_SUCCESS = 301;//群聊成功
+	public static final int STATU_G_CHAT_FAILED = 302;//群聊失败
 		
 	public static final int STATU_REG_SUCCESS = 701;//注册成功
 	public static final int STATU_REG_FAILED = 702;//注册失败
@@ -50,35 +53,13 @@ public class R {
 	public static final int STATU_UNKNOW_ERROR = 903;//未知错误
 	public static final int STATU_ERROR_FORMAT = 904;//发送的格式错误
 		
-	public static final int STATU_U1_APPLY_FIGHT = 1001;//申请与对方进行比赛
-	public static final int STATU_U2_AGREE_FIGHT = 1002;//对方接受比赛
-	public static final int STATU_U2_REFUSE_FIGHT = 1003;//对方拒绝比赛
-	public static final int STATU_FIGHT_READY = 1004;//准备就绪请求比赛开始
-	public static final int STATU_FIGHT_BEGIN = 1005;//服务器发送的比赛开始提示，Json里面需要包含Former(true/fulse)
-	public static final int STATU_FIGHT_ING = 1006;//比赛进行中
-		
 	public static final int STATU_RUNTIME_ERROR = 999;//访问超时
 	public static final int STATU_CONNET_FAILED = 998;//网络或服务器连接失败
-
-	//fightstatus
-	public static final int STATU_CATCH = 201;//接到球
-	public static final int STATU_CANNOT_CATCH = 202;//接不到球
-	public static final int STATU_GETSCORE = 401;//获取比分
-	public static final int STATU_CONTINUE = 402;//继续比赛
-	public static final int STATU_STOP = 403;//停止比赛
 
 	//错误提示信息
 	public static final String ERR_LOGIN_NOUSER = "不存在该用户名！";
 	public static final String ERR_LOGIN_WRONGWD = "密码错误！";
 	public static final String ERR_UNKNOW_TYPE = "未知的Json-type";
 	public static final String ERR_ALREADY_LOGIN = "已经登录过了，请先在另一边注销";
-
-	//Fight_UserInfo_Bean的状态集
-	public static final int FIGHT_STATUS_STARTREPLY = 1;//开始申请比赛
-	public static final int FIGHT_STATUS_AGREEREPLY = 2;//对方同意比赛
-	public static final int FIGHT_STATUS_AGREESTART1 = 3;//第一人同意开始比赛
-	public static final int FIGHT_STATUS_AGREESTART2 = 4;//第两人同意开始比赛
-	public static final int FIGHT_STATUS_AGREESTART_ALL = 5;//第两人同意开始比赛
-	public static final int FIGHT_STATUS_START_TO_SERVES = 6;//服务器发送完比赛开始的响应，等待一方发球
 
 }

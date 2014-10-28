@@ -6,6 +6,7 @@
 // Time: 2014.10.28
 // E-mail: i@ihurray.com
 // Web-site: http://blog.ihurray.com
+// GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/lab1
 
 //通信包
 import java.io.*;
@@ -122,17 +123,29 @@ public class Server_MainThread extends Thread {
 											type = receivedjson.getType();
 											status = receivedjson.getStatus();
 											System.out.println("【收到数据包】"+receivedjson.getJsonStr());
-										}
-										catch(Exception e)
-										{
-											//int type=-999;
-										}
+										}catch(Exception e){}
 
 										//查找好友
 										if(type == R.CMD_SEARCH_FRIEND)
 										{
 											Thread_Serch_Friend thread_reply_fight_fiend = new Thread_Serch_Friend(user_map,socket,receivedjson,sendjson);
 											executor.execute(thread_reply_fight_fiend);
+											continue;
+										}
+
+										//私聊
+										else if(type == R.CMD_SINGLE_CHAT)
+										{
+											Thread_Single_Chat thread_single_chat = new Thread_Single_Chat(user_map,socket,receivedjson,sendjson);
+											executor.execute(thread_single_chat);
+											continue;
+										}
+
+										//群聊
+										else if(type == R.CMD_GROUP_CHAT)
+										{
+											Thread_Group_Chat thread_group_chat = new Thread_Group_Chat(user_map,socket,receivedjson,sendjson);
+											executor.execute(thread_group_chat);
 											continue;
 										}
 										

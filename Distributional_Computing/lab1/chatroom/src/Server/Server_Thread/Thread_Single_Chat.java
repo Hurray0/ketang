@@ -1,7 +1,7 @@
 // Project: ChatRoom
 // Part: Server
-// File: Thread_Logout
-// Note: 服务器的注销线程
+// File: Thread_Single_Chat
+// Note: 服务器的私聊线程
 // Author: Hurray Zhu
 // Time: 2014.10.28
 // E-mail: i@ihurray.com
@@ -21,38 +21,27 @@ import java.sql.*;
 //Hash队列包
 import java.util.HashMap;
 
-public class Thread_Logout extends Thread {
+public class Thread_Single_Chat extends Thread {
 	private JsonClass receivedjson;
 	public JsonClass sendjson;
 	private Socket socket;
 	public HashMap<String,Socket> user_map;
 
-	public Thread_Logout (Socket socket,JsonClass receivedjson,JsonClass sendjson,HashMap<String,Socket> user_map)
+	public Thread_Single_Chat (HashMap<String,Socket> user_map,Socket socket,JsonClass receivedjson,JsonClass sendjson)
 	{
+		this.user_map = user_map;
 		this.socket = socket;
 		this.receivedjson = receivedjson;
 		this.sendjson = sendjson;
-		this.user_map = user_map;
 	}
 
 	public void run()
 	{
 		
-		try 
-		{ 
-			sendjson = new JsonClass(receivedjson.getJsonStr());
-			sendjson.setType(R.CMD_LOGOUT);
-			sendjson.setStatus(R.STATU_LOGOUT_SUCCESS);
-			user_map.remove(receivedjson.getUsername());
-		} 
-		catch(Exception e) 
-		{
-			e.printStackTrace();
-			try{
-				sendjson.setStatus(R.STATU_LOGOUT_FAILED);
-			} catch(Exception ee){}
-		}
-		new output(socket,sendjson);//发送给用户
-		System.out.println("【统计】现在共有"+ user_map.size() +"人登陆在线");
+	}
+
+	public JsonClass return_sendjson()
+	{
+		return sendjson;
 	}
 }

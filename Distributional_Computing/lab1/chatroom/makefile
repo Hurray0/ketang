@@ -9,7 +9,7 @@
 CLASS_PATH   = ./build
 SRC = ./src/
 JAR_PATH = ./jar
-SRC_FILE        = R JsonClass Server/bean/* output Server/Server_Thread/* Server/Server_MainThread Server/Server ClientDemo/*
+SRC_FILE        = R JsonClass output Server/Server_Thread/* Server/Server_MainThread Server/Server ClientDemo/*
 Main_enter = MultiThreadServer
 
 define compile 
