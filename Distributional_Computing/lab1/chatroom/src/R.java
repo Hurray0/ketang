@@ -32,11 +32,13 @@ public class R {
 	public static final int STATU_LOGIN_SUCCESS = 101;//登陆成功
 	public static final int STATU_LOGIN_FAILED = 102;//登陆失败
 
-	public static final int STATU_S_CHAT_SUCCESS = 201;//私聊成功
-	public static final int STATU_S_CHAT_FAILED = 202;//私聊失败
+	public static final int STATU_S_CHAT_SUCCESS = 201;//发送私聊成功
+	public static final int STATU_S_CHAT_FAILED = 202;//发送私聊失败
+	public static final int STATU_S_CHAT_GET = 203;//接收私聊
 
-	public static final int STATU_G_CHAT_SUCCESS = 301;//群聊成功
-	public static final int STATU_G_CHAT_FAILED = 302;//群聊失败
+	public static final int STATU_G_CHAT_SUCCESS = 301;//发送群聊成功
+	public static final int STATU_G_CHAT_FAILED = 302;//发送群聊失败
+	public static final int STATU_G_CHAT_GET = 303;//接收群聊
 		
 	public static final int STATU_REG_SUCCESS = 701;//注册成功
 	public static final int STATU_REG_FAILED = 702;//注册失败

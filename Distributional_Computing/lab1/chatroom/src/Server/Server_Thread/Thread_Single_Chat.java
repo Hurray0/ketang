@@ -24,8 +24,10 @@ import java.util.HashMap;
 public class Thread_Single_Chat extends Thread {
 	private JsonClass receivedjson;
 	public JsonClass sendjson;
+	public JsonClass sendjson2;
 	private Socket socket;
 	public HashMap<String,Socket> user_map;
+	public Socket socket_him;
 
 	public Thread_Single_Chat (HashMap<String,Socket> user_map,Socket socket,JsonClass receivedjson,JsonClass sendjson)
 	{
@@ -33,15 +35,39 @@ public class Thread_Single_Chat extends Thread {
 		this.socket = socket;
 		this.receivedjson = receivedjson;
 		this.sendjson = sendjson;
+		sendjson2 = new JsonClass();
 	}
 
 	public void run()
 	{
-		
+		try 
+		{
+			socket_him = user_map.get(receivedjson.getFriendName());
+			if(!socket_him.isClosed())
+			{
+				sendjson.setType(R.CMD_SINGLE_CHAT);
+				sendjson.setStatus(R.STATU_S_CHAT_SUCCESS);
+				
+				sendjson2 = new JsonClass();
+				sendjson2.setType(R.CMD_SINGLE_CHAT);
+				sendjson2.setStatus(R.STATU_S_CHAT_GET);
+				sendjson2.setFriendName(receivedjson.getUsername());
+				new output(socket_him, sendjson2);//发送给接收者
+				new output(socket, sendjson);//提示发送者
+			}
+			else
+			{
+				throw new Exception("用户不在线");
+			}
+		}
+		catch(Exception e_notOnline)
+		{
+			try
+			{
+				sendjson.setStatus(R.STATU_FRIEND_NOT_ONLINE);
+			}catch(Exception e){}
+			System.err.println("【Run】Exception:查找的好友不在线");
+		}	
 	}
 
-	public JsonClass return_sendjson()
-	{
-		return sendjson;
-	}
 }
