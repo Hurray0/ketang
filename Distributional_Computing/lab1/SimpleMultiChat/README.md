@@ -20,7 +20,6 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 | |____Server.class
 | |____Server_MainThread.class
 |____build.xml
-|____jar
 |____makefile
 |____README.md
 |____src
