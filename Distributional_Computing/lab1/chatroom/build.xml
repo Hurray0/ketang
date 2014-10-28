@@ -19,7 +19,6 @@
     <javac classpath="${myclasspath}" srcdir="${src}" destdir="${build}">
       <classpath refid="project.classpath"></classpath>
       <include name="*.java" />
-      <include name="Server/bean/*.java" />
       <include name="Server/Server_Thread/*.java" />
       <include name="Server/Server_MainThread.java" />
       <include name="Server/Server.java" />
