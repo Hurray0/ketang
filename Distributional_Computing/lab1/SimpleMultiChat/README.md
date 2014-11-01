@@ -11,14 +11,18 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 ##文件目录
 ```
 .
-|
+.
 |____build
+| |____Client$1.class
 | |____Client$ClientThreadInput.class
 | |____Client$ClientThreadOutput.class
+| |____Client$TextFieldListener.class
 | |____Client.class
+| |____makefile
 | |____R.class
 | |____Server.class
 | |____Server_MainThread.class
+| |____ServerMainThread.class
 |____build.xml
 |____makefile
 |____README.md
@@ -26,7 +30,7 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 | |____Client.java
 | |____R.java
 | |____Server.java
-| |____Server_MainThread.java
+| |____ServerMainThread.java
 ```
 
 ##编码环境
@@ -47,10 +51,11 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 ####ant编译
 ![](jietu/ant.png)
 
-####运行服务器
+####运行服务器(在build目录中用make Server命令也可)
 ![](jietu/runserver.png)
 
-####运行客户端
+####运行客户端(在build目录中用make Client命令也可)
+
 ![](jietu/runclient.png)
 
 ##运行效果
