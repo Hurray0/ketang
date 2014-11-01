@@ -13,7 +13,7 @@
     <javac srcdir="${src}" destdir="${build}">
       <include name="R.java" />
       <include name="Client.java" />
-      <include name="Server_MainThread.java" />
+      <include name="ServerMainThread.java" />
       <include name="Server.java" />
     </javac>
   </target>

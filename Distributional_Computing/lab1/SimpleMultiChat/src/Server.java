@@ -14,19 +14,24 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.awt.*;
+import javax.swing.*;
 
 //Hash队列包
 import java.util.HashMap;
 //线程池包
 import java.util.concurrent.*;
 
-public class Server
+public class Server extends JFrame
 {
+	// GUI
+	private JTextArea jta = new JTextArea();
 	// Text area for displaying contents
 	private static Lock lock = new ReentrantLock();
-	private HashMap<Integer,Socket>  user_map = new HashMap<Integer,Socket> ();
+	private HashMap<Integer,Socket>  usermap = new HashMap<Integer,Socket> ();
 	// 线程池
 	ExecutorService executor = Executors.newCachedThreadPool();
+
 	
 	public static void main(String[] args)
 	{
@@ -37,16 +42,24 @@ public class Server
 	{
 		try 
 		{
+			//GUI
+			setLayout(new BorderLayout());
+			add(new JScrollPane(jta), BorderLayout.CENTER);
+			setTitle("Server");
+			setSize(500, 300);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setVisible(true);
+
 			// Create a server socket
 			ServerSocket serverSocket = new ServerSocket(R.PORT);
-			System.out.println("欢迎进入服务器！");
+			jta.append("欢迎进入服务器！\n");
 
 			// Number a client
 			int clientNo = 1;
 
-			// // 开始一个清理user_map的线程
-			// Thread_Clean_UserMap thread_clean_usermap = new Thread_Clean_UserMap(user_map);
-			// executor.execute(thread_clean_usermap);
+			// // 开始一个清理usermap的线程（由于本实验要求较低，就忽略了这个功能，实际使用应该清理usermap）
+			// ThreadCleanUserMap threadCleanUsermap = new ThreadCleanUserMap(usermap);
+			// executor.execute(threadCleanUsermap);
 
 			while (true)
 			{
@@ -56,15 +69,15 @@ public class Server
 				System.out.println(socket);
 
 				// Display the client number
-				System.out.println("【统计】第" + clientNo + "个连接用户，时间:"
+				jta.append("【统计】第" + clientNo + "个连接用户，时间:"
 						+ Calendar.getInstance().getTime()+
 						"，HOST:" + socket.getInetAddress().getHostName() +
-						"，IP:" + socket.getInetAddress().getHostAddress());
-				user_map.put(clientNo, socket);
-				System.out.println("【统计】现在共有"+ user_map.size() +"人登陆在线");
+						"，IP:" + socket.getInetAddress().getHostAddress()+ "\n") ;
+				usermap.put(clientNo, socket);
+				jta.append("【统计】现在共有"+ usermap.size() +"人登陆在线\n");
 
 				// Create a new thread for the connection
-				Server_MainThread thread = new Server_MainThread(socket, user_map);
+				ServerMainThread thread = new ServerMainThread(socket, usermap, jta);
 				executor.execute(thread);
 
 				// Increment clientNo

@@ -1,6 +1,6 @@
 // Project: SimpleMultiChat
 // Part: Server
-// File: Server_MainThread
+// File: ServerMainThread
 // Note: 服务器的通信主线程
 // Author: Hurray Zhu
 // Time: 2014.10.28
@@ -19,24 +19,30 @@ import java.util.HashMap;
 import java.util.Iterator;
 //线程池包
 import java.util.concurrent.*;
+//GUI
+import java.awt.*;
+import javax.swing.*;
 
-public class Server_MainThread extends Thread 
+
+public class ServerMainThread extends Thread 
 {
-		// Socket
+	// Socket
 	private Socket socket; 
-	public Socket socket_him;
+	public Socket sockethim;
+	public JTextArea jta;
 
-		// 服务器用户Hash列表
-	public HashMap<Integer,Socket> user_map;
+	// 服务器用户Hash列表
+	public HashMap<Integer,Socket> usermap;
 
-		// 构造方法
-	public Server_MainThread(Socket socket, HashMap<Integer,Socket>  user_map) 
+	// 构造方法
+	public ServerMainThread(Socket socket, HashMap<Integer,Socket>  usermap, JTextArea jta) 
 	{
 		this.socket = socket;
-		this.user_map = user_map;
+		this.usermap = usermap;
+		this.jta = jta;
 	}
 
-		// 线程
+	// 线程
 	public void run() 
 	{
 		try
@@ -45,15 +51,15 @@ public class Server_MainThread extends Thread
 			while(true)
 			{
 				String s = inputFromClient.readUTF();
-				System.out.println("收到："+ s);
-				// String outputMsg = "No." + user_map.get(socket) + "：" + s;
-				Iterator<Socket> it = user_map.values().iterator();//得到一个键的集合的迭代器
+				jta.append("收到："+ s + "\n");
+				// String outputMsg = "No." + usermap.get(socket) + "：" + s;
+				Iterator<Socket> it = usermap.values().iterator();//得到一个键的集合的迭代器
 				while(it.hasNext())
 				{
 					try 
 					{
-						socket_him = it.next();
-						DataOutputStream outputToClient = new DataOutputStream(socket_him.getOutputStream());
+						sockethim = it.next();
+						DataOutputStream outputToClient = new DataOutputStream(sockethim.getOutputStream());
 						outputToClient.writeUTF(s);
 					}
 					catch(Exception ee){}

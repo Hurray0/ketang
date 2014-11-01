@@ -57,8 +57,6 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 ####服务器接收用户登录
 ![](jietu/jieshoudenglu.png)
 
-####用户发消息时服务器及客户端反应
-![](jietu/faxiaoxi.png)
-
 ####群聊效果
 ![](jietu/qunliao.png)
+![](jietu/qunliao2.png)

@@ -9,7 +9,7 @@
 CLASS_PATH   = ./build
 SRC = ./src/
 # JAR_PATH = ./jar
-SRC_FILE        = R Client Server_MainThread Server
+SRC_FILE        = R Client ServerMainThread Server
 Main_enter = Server
 
 define compile 
