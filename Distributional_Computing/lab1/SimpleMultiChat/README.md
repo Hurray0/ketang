@@ -59,4 +59,5 @@ GitHub: https://github.com/Hurray0/ketang/tree/master/Distributional_Computing/l
 
 ####群聊效果
 ![](jietu/qunliao.png)
+####群聊效果2
 ![](jietu/qunliao2.png)
