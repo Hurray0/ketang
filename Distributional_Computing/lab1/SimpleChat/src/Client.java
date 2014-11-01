@@ -1,4 +1,4 @@
-// Project: SimpleMultiChat
+// Project: SimpleChat
 // Part: Client
 // File: Client
 // Note: 客户端主程序
@@ -98,11 +98,11 @@ public class Client extends JFrame {
 				try
 				{
 					String ss = inputFromServer.readUTF();
-					jta.append("【群聊消息】" + ss + "\n");
+					jta.append(ss);
 				}
 				catch(Exception ex)
 				{
-					jta.append("error:" + ex + "\n");
+					jta.append("error:" + ex);
 				}
 			}
 		}
@@ -158,6 +158,11 @@ public class Client extends JFrame {
 				}catch(Exception ex)
 				{
 					jta.append("error:" + ex + "\n");
+				}
+				jtf.setText("");
+				if(input.equals("exit"))
+				{
+					jta.setText("");
 				}
 			}
 			catch(Exception ee)

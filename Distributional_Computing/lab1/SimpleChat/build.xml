@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 
-<!--  R JsonClass Server/bean/* output Server/Server_Thread/* Server/Server_MainThread Server/Server ClientDemo/*  -->
 <project default="build" basedir=".">
   <property name="appname" value="Server" />
   <property name="base" value="." />
@@ -14,6 +13,7 @@
       <include name="R.java" />
       <include name="Client.java" />
       <include name="ServerMainThread.java" />
+      <include name="ThreadCleanUserMap.java" />
       <include name="Server.java" />
     </javac>
   </target>

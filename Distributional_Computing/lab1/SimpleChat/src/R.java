@@ -1,4 +1,4 @@
-// Project: SimpleMultiChat
+// Project: SimpleChat
 // Part: Server
 // File: R
 // Note: Resource File
@@ -13,5 +13,6 @@ public class R {
 	//常量
 	public static final int PORT = 8000;//服务器端口
 	public static final String IPADDRESS = "localhost";
-
+	public static final String MENU = "1.群聊\n2.私聊\n3.退出登录\n请输入你的选项\n";
+	public static final int TIME_CLEAN_MILLIS = 1000;//清理周期
 }

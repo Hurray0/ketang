@@ -1,4 +1,4 @@
-// Project: SimpleMultiChat
+// Project: SimpleChat
 // Part: Server
 // File: Server
 // Note: 服务器主程序
@@ -28,7 +28,7 @@ public class Server extends JFrame
 	private JTextArea jta = new JTextArea();
 	// Text area for displaying contents
 	private static Lock lock = new ReentrantLock();
-	private HashMap<Integer,Socket>  usermap = new HashMap<Integer,Socket> ();
+	private HashMap<String, Socket> usernameMap = new HashMap<String, Socket>();
 	// 线程池
 	ExecutorService executor = Executors.newCachedThreadPool();
 
@@ -57,9 +57,9 @@ public class Server extends JFrame
 			// Number a client
 			int clientNo = 1;
 
-			// // 开始一个清理usermap的线程（由于本实验要求较低，就忽略了这个功能，实际使用应该清理usermap）
-			// ThreadCleanUserMap threadCleanUsermap = new ThreadCleanUserMap(usermap);
-			// executor.execute(threadCleanUsermap);
+			// 开始一个清理usermap的线程（由于本实验要求较低，就忽略了这个功能，实际使用应该清理usermap）
+			ThreadCleanUserMap threadCleanUsermap = new ThreadCleanUserMap(usernameMap, jta);
+			executor.execute(threadCleanUsermap);
 
 			while (true)
 			{
@@ -73,11 +73,10 @@ public class Server extends JFrame
 						+ Calendar.getInstance().getTime()+
 						"，HOST:" + socket.getInetAddress().getHostName() +
 						"，IP:" + socket.getInetAddress().getHostAddress()+ "\n") ;
-				usermap.put(clientNo, socket);
-				jta.append("【统计】现在共有"+ usermap.size() +"人登陆在线\n");
+				jta.append("【统计】现在共有"+ usernameMap.size() +"人登陆在线\n");
 
 				// Create a new thread for the connection
-				ServerMainThread thread = new ServerMainThread(socket, usermap, jta);
+				ServerMainThread thread = new ServerMainThread(socket, usernameMap, jta);
 				executor.execute(thread);
 
 				// Increment clientNo
