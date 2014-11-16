@@ -1,0 +1,7 @@
+main(void )
+{
+int a = 19;
+char hurray;
+return 0;
+
+}  
