@@ -5,8 +5,9 @@
 // Time: 2014.11.10
 // E-mail: i@ihurray.com
 // Web-site: http://www.ihurray.com
-// GitHub: 
- 
+// GitHub: https://github.com/Hurray0/ketang/
+// 
+#include <stdio.h>   
 #include <stdlib.h>  
 #include <string.h>  
 #include <ctype.h>  
