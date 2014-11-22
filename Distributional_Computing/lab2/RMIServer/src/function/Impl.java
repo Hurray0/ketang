@@ -62,6 +62,9 @@ public class Impl extends UnicastRemoteObject implements Interface {
         }
         for (int i = 0; i < meetingList.size(); i++) {
             Meeting thisMeeting = (Meeting) meetingList.get(i);
+            if (thisMeeting.getStatus() == 0) {
+                continue;
+            }
             if (thisMeeting.getUser1().equals(user1)) {
                 if (thisMeeting.getUser2().equals(user2)) {
                     return "不可以重复预约另一用户！";
@@ -164,7 +167,7 @@ public class Impl extends UnicastRemoteObject implements Interface {
         int i, j;
         for (i = 0, j = 0; i < meetingList.size(); i++) {
             Meeting thisMeeting = (Meeting) meetingList.get(i);
-            if (thisMeeting.getUser1().equals(user1)) {
+            if (thisMeeting.getUser1().equals(user1) && thisMeeting.getStatus() == 1) {
                 thisMeeting.setStatus(0);
                 j++;
             }
