@@ -16,6 +16,9 @@ import java.rmi.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import resource.*;
 
 /**
@@ -24,15 +27,17 @@ import resource.*;
  */
 public class RMIServer {
 
-    public static void main(String args[]) {
-        InputStreamReader is = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(is);
+    public HashMap<String, String> user_map = new HashMap<String, String>();
+    public List meetingList = new ArrayList();
+
+    public RMIServer() {
         String portNum, registryURL;
+
         try {
             int RMIPortNum = R.PORT;
             startRegistry(RMIPortNum);
-            RegistImpl exportedObj = new RegistImpl();
-            registryURL = "rmi://localhost:" + R.PORT + "/hello";
+            Impl exportedObj = new Impl(user_map, meetingList);
+            registryURL = "rmi://localhost:" + R.PORT + "/meeting";
             Naming.rebind(registryURL, exportedObj);
             System.out.println("Server registered.  Registry currently contains:");
             listRegistry(registryURL);
@@ -40,6 +45,10 @@ public class RMIServer {
         } catch (Exception re) {
             System.out.println("Exception in HelloServer.main: " + re);
         }
+    }
+
+    public static void main(String args[]) {
+        new RMIServer();
     }
 
     private static void startRegistry(int RMIPortNum)
