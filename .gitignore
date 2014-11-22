@@ -1,1 +1,3 @@
 *.class
+/Distributional_Computing/lab2/RMIServer/nbproject/private/
+/Distributional_Computing/lab2/RMIServer/build/
