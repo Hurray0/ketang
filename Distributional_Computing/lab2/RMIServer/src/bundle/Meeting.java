@@ -1,7 +1,7 @@
 /**
  * @Author hurray
- * @Part 
- * @Note 
+ * @Part class
+ * @Note 会晤类
  * @Encoding UTF-8 
  * @Date 2014-11-22 05:11:52
  * @Copyright Hurray@BUPT
@@ -21,6 +21,8 @@ public class Meeting {
     private long startTime;
     private long endTime;
     private String label;
+    private int id;
+    private int status = 1;//0为已删除
 
     public String getUser1() {
         return user1;
@@ -61,6 +63,21 @@ public class Meeting {
     public void setLabel(String label) {
         this.label = label;
     }
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
     
 }
