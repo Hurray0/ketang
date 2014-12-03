@@ -30,7 +30,7 @@ import jxl.write.Label;
  * @Author hurray
  * @Class Cluster
  */
-public class Cluster {
+public class KMeans {
 
     public void makeSeed(int numOfCluster, int seed[]) {
         Random random = new Random();
@@ -78,7 +78,7 @@ public class Cluster {
         }
     }
 
-    public void showNearSeedId(int dataNearSeedId[], int len_seed) {
+    public void show(double data[][], int seed[], int len_seed, int dataNearSeedId[]) {
         int seedTime[] = new int[len_seed];
         for (int i = 0; i < len_seed; i++) {
             seedTime[i] = 0;
@@ -88,7 +88,11 @@ public class Cluster {
 //            System.out.println(dataNearSeedId[i]);
         }
         for (int i = 0; i < len_seed; i++) {
-            System.out.println("第" + i + "簇有" + seedTime[i] + "个点！");
+            System.out.print("第" + (i+1) + "簇有" + seedTime[i] + "个点！坐标：");
+            for (int j = 0; j < data[0].length; j++) {
+                System.out.print(data[seed[i]][j] + " ");
+            }
+            System.out.println();
         }
     }
 
@@ -148,7 +152,7 @@ public class Cluster {
         return true;
     }
 
-    public Cluster() {
+    public KMeans() {
         jxl.Workbook readwb = null;
 
         try {
@@ -172,7 +176,7 @@ public class Cluster {
             //获取指定单元格的对象引用   
             for (int i = 2; i < 5001; i++) {
 
-                for (int j = 2; j < 11; j++) {
+                for (int j = 2; j < 12; j++) {
 
                     Cell cell = readsheet.getCell(j, i);
 
@@ -198,7 +202,7 @@ public class Cluster {
             //showNearSeedId(dataNearSeedId);//展示一次聚类的结果
 
             moveLoop(data, seed, numOfCluster, dataNearSeedId);
-            showNearSeedId(dataNearSeedId, numOfCluster);//展示一次聚类的结果
+            show(data, seed, numOfCluster, dataNearSeedId);//展示一次聚类的结果
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -211,6 +215,6 @@ public class Cluster {
     }
 
     public static void main(String[] args) {
-        new Cluster();
+        new KMeans();
     }
 }
