@@ -3,3 +3,5 @@
 /Distributional_Computing/lab2/RMIServer/build/
 /Distributional_Computing/lab2/RMIServer/dist/
 *.zip
+/Data_Mining/lab2/Cluster/nbproject/private/
+/Data_Mining/lab2/Cluster/build/
