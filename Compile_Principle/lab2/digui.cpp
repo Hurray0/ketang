@@ -1,5 +1,13 @@
 /**
  *
+ * Author: Hurray Zhu
+ * Time: 20141202
+ * Part: Lexical analysis of Compile System(by Recursion call)
+ * web: http://www.ihurray.com
+ * E-mail: i@ihurray.com
+ * Github: https://github.com/Hurray0/ketang/tree/master/Compile_Principle/lab2
+ *
+ * 【题目及演算步骤】
  * E->E+T|E-T|T
  * T->T*F|T/F|F
  * F->id|(E)|num
@@ -29,7 +37,18 @@ char nextChar()
 
 void forward()
 {
-	printf("字符%c已经处理\n", buffer[pointer_buffer2]);
+	if(buffer[pointer_buffer2] != '\1' && buffer[pointer_buffer2] != '\2')
+	{
+		printf("字符%c已经处理\n", buffer[pointer_buffer2]);
+	}
+	else if(buffer[pointer_buffer2] == '\1')
+	{
+		printf("id已经处理\n");
+	}
+	else if(buffer[pointer_buffer2] == '\2')
+	{
+		printf("num已经处理\n");
+	}
 	pointer_buffer2 ++;
 }
 
@@ -51,7 +70,7 @@ int procE()
 
 int procEE()
 {
-	printf("进入procEE\n");
+	printf("进入procE`\n");
 	int TF = 1;
 	
 	if (nextChar() == '+' || nextChar() == '-')
@@ -59,12 +78,12 @@ int procEE()
 		forward();
 		TF *= procT();
 		TF *= procEE();
-		printf("退出procEE\n");
+		printf("退出procE`\n");
 		return TF;
 	}
 	else
 	{
-		printf("退出procEE\n");
+		printf("退出procE`\n");
 		return TF;
 	}
 }
@@ -81,19 +100,19 @@ int procT()
 
 int procTT()
 {
-	printf("进入procTT\n");
+	printf("进入procT`\n");
 	int TF = 1;
 	if (nextChar() == '*' || nextChar() == '/')
 	{
 		forward();
 		TF *= procF();
 		TF *= procTT();
-		printf("退出procTT\n");
+		printf("退出procT`\n");
 		return TF;
 	}
 	else
 	{
-		printf("退出procTT\n");
+		printf("退出procT`\n");
 		return TF;
 	}
 }
@@ -102,7 +121,7 @@ int procF()
 {
 	printf("进入procF\n");
 	int TF = 1;
-	if (nextChar() == 'a' || nextChar() == 'b') //id 和 num
+	if (nextChar() == '\1' || nextChar() == '\2') //id 和 num
 	{
 		forward();
 		printf("退出procF\n");
@@ -157,7 +176,7 @@ void id()
 	}
 	if(TF == 1)
 	{
-		buffer[pointer_buffer++] = 'a';
+		buffer[pointer_buffer++] = '\1';
 	}
 }
 
@@ -183,17 +202,13 @@ void num()
 	}
 	if(TF == 1)
 	{
-		buffer[pointer_buffer++] = 'b';
+		buffer[pointer_buffer++] = '\2';
 	}
 }
 
 void addToBuffer()
 {
-	if(input[pointer_input] == ' ' || input[pointer_input] == '\t')
-	{
-		pointer_input ++;
-	}
-	else if(isNum())
+	if(isNum())
 	{
 		num();
 	}
@@ -209,6 +224,27 @@ void addToBuffer()
 	}
 }
 
+void printBuffer()
+{
+	printf("将输入串转换成如下串：");
+	for(int i = 0; buffer[i]; i++)
+	{
+		if(buffer[i] != '\1' && buffer[i] != '\2')
+		{
+			printf("%c", buffer[i]);
+		}
+		else if(buffer[i] == '\1')
+		{
+			printf("id");
+		}
+		else if(buffer[i] == '\2')
+		{
+			printf("num");
+		}
+	}
+	printf("\n");
+}
+
 int main()
 {
 	pointer_input = 0;
@@ -221,10 +257,23 @@ int main()
 		addToBuffer();
 	}while(input[pointer_input] != '\0');
 
-	printf("%s\n", buffer);
+	printBuffer();
 	pointer_buffer2 = 0;
 	int output = procE();
-	printf("结果为：%d\n", output);
+	switch(output)
+	{
+		case 0:
+		{
+			printf("字符串%s没有匹配成功！\n", input);
+			break;
+		}
+		case 1:
+		{
+			printf("字符串%s匹配成功！\n", input);
+		}
+	}
+
+	// printf("结果为：%d\n", output);
 
 	return 0;
 }
