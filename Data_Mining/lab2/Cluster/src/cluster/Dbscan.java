@@ -1,3 +1,14 @@
+/**
+ * @Author hurray
+ * @Part Dbscan
+ * @Note DBscan算法实现
+ * @Encoding UTF-8
+ * @Date 2014-12-03 11:27:24
+ * @Copyright Hurray@BUPT
+ * @MainPage http://www.ihurray.com
+ *
+ */
+
 package cluster;
 
 import java.io.BufferedReader;
@@ -10,23 +21,14 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 
-/**
- * @Author hurray
- * @Part
- * @Note
- * @Encoding UTF-8
- * @Date 2014-12-03 11:27:24
- * @Copyright Hurray@BUPT
- * @MainPage http://www.ihurray.com
- *
- */
+
 /**
  * @Author hurray
  * @Class Dbscan
  */
 public class Dbscan {
 
-    public static final int MinPts = 400;   //密度
+    public static final int MinPts = 20;   //密度
     public static final double Eps = 40;    //区域半径
 
     public boolean distanceOK(double data1[], double data2[]) {

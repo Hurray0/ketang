@@ -1,7 +1,7 @@
 /**
  * @Author hurray
- * @Part
- * @Note
+ * @Part KMeans
+ * @Note K-Means算法实现
  * @Encoding UTF-8
  * @Date 2014-12-03 10:41:34
  * @Copyright Hurray@BUPT
@@ -174,7 +174,7 @@ public class KMeans {
             int[] seed = new int[5000];
 
             //获取指定单元格的对象引用   
-            for (int i = 2; i < 5001; i++) {
+            for (int i = 2; i < 5002; i++) {
 
                 for (int j = 2; j < 12; j++) {
 
