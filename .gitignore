@@ -5,3 +5,5 @@
 *.zip
 /Data_Mining/lab2/Cluster/nbproject/private/
 /Data_Mining/lab2/Cluster/build/
+/Data_Mining/lab2/FishEating/nbproject/private/
+/Data_Mining/lab2/FishEating/build/
