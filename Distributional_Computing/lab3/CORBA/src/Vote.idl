@@ -1,0 +1,7 @@
+module VoteApp {
+	interface Vote {
+		string getList();
+		void castVote(in string name);
+		//oneway void shutdown();
+	};
+};

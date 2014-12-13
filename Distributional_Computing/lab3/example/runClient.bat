@@ -1,0 +1,1 @@
+java HelloClient -ORBInitialHost localhost -ORBInitialPort 1234
